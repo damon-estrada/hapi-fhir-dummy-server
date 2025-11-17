@@ -3,10 +3,15 @@ services:
   hapi-fhir:
     image: "hapiproject/hapi:latest"
     container_name: hapi-fhir
+    # 1. Map Render's external port to the container's new internal port
     ports:
-      - "${PORT}:8080"
+      - "${PORT}:${PORT}"
+    # 2. Pass Render's PORT value into the container
+    environment:
+      # This tells the HAPI/Spring Boot app to listen on the value of $PORT
+      - SERVER_PORT=${PORT}
     volumes:
-      # This volume persists the embedded H2 database files across restarts.
       - hapi_h2_data:/app/h2-data
+
 volumes:
   hapi_h2_data:
