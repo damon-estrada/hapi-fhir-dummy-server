@@ -5,7 +5,8 @@ server:
   # Uncomment to serve FHIR under a non-default context path (e.g., /example/path/fhir)
   # servlet:
   #   context-path: /example/path
-  port: 8080
+#  port: 8080
+  port: ${PORT}
   tomcat:
     # allow | as a separator in URLs
     relaxed-query-chars: "|"
